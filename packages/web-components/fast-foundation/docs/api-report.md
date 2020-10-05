@@ -11,6 +11,7 @@ import { ElementStyles } from '@microsoft/fast-element';
 import { FASTElement } from '@microsoft/fast-element';
 import { Orientation } from '@microsoft/fast-web-utilities';
 import { PartialFASTElementDefinition } from '@microsoft/fast-element';
+import { ViewTemplate } from '@microsoft/fast-element';
 
 // @public
 export class Accordion extends FASTElement {
@@ -194,8 +195,6 @@ export class Checkbox extends FormAssociated<HTMLInputElement> {
     defaultChecked: boolean;
     // @internal (undocumented)
     defaultSlottedNodes: Node[];
-    // (undocumented)
-    formResetCallback(): void;
     indeterminate: boolean;
     // @internal
     protected initialValue: string;
@@ -211,22 +210,6 @@ export const CheckboxTemplate: import("@microsoft/fast-element").ViewTemplate<Ch
 
 // @public
 export function composedParent<T extends HTMLElement>(element: T): HTMLElement | null;
-
-// Warning: (ae-forgotten-export) The symbol "CustomPropertyManagerBase" needs to be exported by the entry point index.d.ts
-//
-// @public
-export class ConstructableStylesCustomPropertyManager extends CustomPropertyManagerBase {
-    constructor(sheet: CSSStyleSheet);
-    // (undocumented)
-    protected customPropertyTarget: CSSStyleDeclaration;
-    isSubscribed(client: CustomPropertyManagerClient): boolean;
-    // (undocumented)
-    protected readonly sheet: CSSStyleSheet;
-    // (undocumented)
-    protected styles: ElementStyles;
-    subscribe(client: CustomPropertyManagerClient): void;
-    unsubscribe(client: CustomPropertyManagerClient): void;
-}
 
 // @public
 export class CSSCustomPropertyBehavior implements Behavior, CSSCustomPropertyDefinition {
@@ -264,23 +247,99 @@ export interface CSSCustomPropertyTarget {
 export type CSSDisplayPropertyValue = "block" | "contents" | "flex" | "grid" | "inherit" | "initial" | "inline" | "inline-block" | "inline-flex" | "inline-grid" | "inline-table" | "list-item" | "none" | "run-in" | "table" | "table-caption" | "table-cell" | "table-column" | "table-column-group" | "table-footer-group" | "table-header-group" | "table-row" | "table-row-group";
 
 // @public
-export interface CustomPropertyManager {
-    isSubscribed?(provider: CustomPropertyManagerClient): boolean;
-    readonly owner: CustomPropertyManagerClient | null;
-    register(definition: CSSCustomPropertyDefinition): void;
-    remove(name: string): void;
-    set(definition: CSSCustomPropertyDefinition): void;
-    setAll(): void;
-    subscribe?(provider: CustomPropertyManagerClient): void;
-    unregister(name: string): void;
-    unsubscribe?(provider: CustomPropertyManagerClient): void;
+export class DataGrid extends FASTElement {
+    constructor();
+    columnsData: DataGridColumn[] | null;
+    // @internal (undocumented)
+    connectedCallback(): void;
+    // @internal (undocumented)
+    disconnectedCallback(): void;
+    // (undocumented)
+    focusColumnIndex: number;
+    // (undocumented)
+    focusRowIndex: number;
+    static generateColumns: (row: object) => DataGridColumn[];
+    // (undocumented)
+    generateHeader: boolean;
+    // (undocumented)
+    handleFocusin: (e: FocusEvent) => void;
+    // (undocumented)
+    handleKeydown(e: KeyboardEvent): void;
+    // (undocumented)
+    handleRowFocus(e: Event): void;
+    rowItemTemplate: ViewTemplate;
+    rowsData: object[];
+    // @internal (undocumented)
+    slottedHeaderElements: HTMLElement[];
+    // @internal (undocumented)
+    slottedRowElements: HTMLElement[];
 }
 
 // @public
-export interface CustomPropertyManagerClient extends FASTElement {
-    cssCustomPropertyDefinitions: Map<string, CSSCustomPropertyDefinition>;
-    evaluate(definition: CSSCustomPropertyDefinition): string;
+export class DataGridCell extends FASTElement {
+    columnData: DataGridColumn | null;
+    // @internal (undocumented)
+    connectedCallback(): void;
+    // @internal (undocumented)
+    disconnectedCallback(): void;
+    gridColumnIndex: number;
+    // (undocumented)
+    handleFocusin(e: FocusEvent): void;
+    // (undocumented)
+    handleFocusout(e: FocusEvent): void;
+    isActiveCell: boolean;
+    rowData: object | null;
+    }
+
+// @public
+export const DataGridCellTemplate: import("@microsoft/fast-element").ViewTemplate<DataGridCell, any>;
+
+// @public
+export interface DataGridColumn {
+    cellTemplate?: ViewTemplate;
+    columnDataKey: string;
+    columnWidth?: string;
+    headerCellTemplate?: ViewTemplate;
+    title?: string;
 }
+
+// @public
+export class DataGridHeader extends FASTElement {
+    columnData: DataGridColumn[];
+    }
+
+// @public
+export const DataGridHeaderTemplate: import("@microsoft/fast-element").ViewTemplate<DataGridHeader, any>;
+
+// @public
+export class DataGridRow extends FASTElement {
+    // (undocumented)
+    cellElements?: object[];
+    // (undocumented)
+    cellItemTemplate?: ViewTemplate;
+    columnsData: DataGridColumn[] | null;
+    // @internal (undocumented)
+    connectedCallback(): void;
+    // @internal (undocumented)
+    disconnectedCallback(): void;
+    // (undocumented)
+    focusColumnIndex: number;
+    gridTemplateColumns: string;
+    // (undocumented)
+    handleCellFocus(e: Event): void;
+    // (undocumented)
+    handleFocusout(e: FocusEvent): void;
+    isActiveRow: boolean;
+    rowData: object | null;
+    // @internal (undocumented)
+    slottedCellElements: HTMLElement[];
+    }
+
+// @public
+export const DataGridRowTemplate: import("@microsoft/fast-element").ViewTemplate<DataGridRow, any>;
+
+// @public
+export const DataGridTemplate: import("@microsoft/fast-element").ViewTemplate<DataGrid, any>;
 
 // @public
 export interface DecoratorDesignSystemPropertyConfiguration extends Omit<DecoratorAttributeConfiguration, "attribute"> {
@@ -320,20 +379,15 @@ export const designSystemConsumerBehavior: Behavior;
 export function designSystemProperty<T extends DesignSystemProvider>(config: DecoratorDesignSystemPropertyConfiguration): (source: T, property: string) => void;
 
 // @public
-export class DesignSystemProvider extends FASTElement implements CSSCustomPropertyTarget, DesignSystemConsumer, CustomPropertyManagerClient {
+export class DesignSystemProvider extends FASTElement implements CSSCustomPropertyTarget, DesignSystemConsumer {
     constructor();
     // @internal (undocumented)
     connectedCallback(): void;
-    // @internal
-    cssCustomPropertyDefinitions: Map<string, CSSCustomPropertyDefinition>;
-    customPropertyManager: CustomPropertyManager;
     designSystem: {};
     // @internal
     designSystemProperties: {
         [propertyName: string]: Required<Pick<DecoratorDesignSystemPropertyConfiguration, "cssCustomProperty" | "default">>;
     };
-    // (undocumented)
-    disconnectedCallback(): void;
     // @deprecated
     disconnectedCSSCustomPropertyRegistry: CSSCustomPropertyDefinition[];
     disconnectedRegistry: Array<(provider: DesignSystemProvider) => void> | void;
@@ -342,10 +396,10 @@ export class DesignSystemProvider extends FASTElement implements CSSCustomProper
     static isDesignSystemProvider(el: HTMLElement | DesignSystemProvider): el is DesignSystemProvider;
     readonly isDesignSystemProvider = true;
     provider: DesignSystemProvider | null;
-    registerCSSCustomProperty(def: CSSCustomPropertyDefinition): void;
+    registerCSSCustomProperty(behavior: CSSCustomPropertyDefinition): void;
     static registerTagName(tagName: string): void;
     static get tagNames(): string[];
-    unregisterCSSCustomProperty(def: CSSCustomPropertyDefinition): void;
+    unregisterCSSCustomProperty(behavior: CSSCustomPropertyDefinition): void;
     useDefaults: boolean;
     }
 
@@ -454,8 +508,6 @@ export abstract class FormAssociated<T extends HTMLInputElement | HTMLTextAreaEl
     // @internal
     static get formAssociated(): boolean;
     formDisabledCallback(disabled: boolean): void;
-    // (undocumented)
-    formResetCallback(): void;
     protected initialValue: string;
     protected initialValueChanged(previous: string, next: string): void;
     // (undocumented)
@@ -765,17 +817,6 @@ export class StartEnd {
 // @public
 export const startTemplate: import("@microsoft/fast-element").ViewTemplate<StartEnd, any>;
 
-// @public
-export class StyleElementCustomPropertyManager extends CustomPropertyManagerBase {
-    constructor(style: HTMLStyleElement, client: CustomPropertyManagerClient);
-    // (undocumented)
-    protected customPropertyTarget: CSSStyleDeclaration;
-    // (undocumented)
-    readonly sheet: CSSStyleSheet;
-    // (undocumented)
-    readonly styles: HTMLStyleElement;
-}
-
 // @alpha (undocumented)
 export const supportsElementInternals: boolean;
 
@@ -792,8 +833,6 @@ export class Switch extends FormAssociated<HTMLInputElement> {
     defaultChecked: boolean;
     // @internal (undocumented)
     defaultSlottedNodes: Node[];
-    // (undocumented)
-    formResetCallback(): void;
     // @internal
     protected initialValue: string;
     // @internal (undocumented)
