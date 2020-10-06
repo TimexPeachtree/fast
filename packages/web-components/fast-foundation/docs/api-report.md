@@ -249,7 +249,7 @@ export type CSSDisplayPropertyValue = "block" | "contents" | "flex" | "grid" | "
 // @public
 export class DataGrid extends FASTElement {
     constructor();
-    columnsData: DataGridColumn[] | null;
+    columnsData: DataGridColumn[];
     // @internal (undocumented)
     connectedCallback(): void;
     // @internal (undocumented)
@@ -260,7 +260,7 @@ export class DataGrid extends FASTElement {
     // (undocumented)
     generateHeader: boolean;
     // (undocumented)
-    handleFocusin: (e: FocusEvent) => void;
+    handleFocus(e: FocusEvent): void;
     // (undocumented)
     handleKeydown(e: KeyboardEvent): void;
     // (undocumented)
