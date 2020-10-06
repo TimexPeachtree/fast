@@ -254,9 +254,7 @@ export class DataGrid extends FASTElement {
     connectedCallback(): void;
     // @internal (undocumented)
     disconnectedCallback(): void;
-    // (undocumented)
     focusColumnIndex: number;
-    // (undocumented)
     focusRowIndex: number;
     static generateColumns: (row: object) => DataGridColumn[];
     // (undocumented)
@@ -329,6 +327,8 @@ export class DataGridRow extends FASTElement {
     handleCellFocus(e: Event): void;
     // (undocumented)
     handleFocusout(e: FocusEvent): void;
+    // (undocumented)
+    handleKeydown(e: KeyboardEvent): void;
     isActiveRow: boolean;
     rowData: object | null;
     // @internal (undocumented)
