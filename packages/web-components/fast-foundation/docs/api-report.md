@@ -317,7 +317,18 @@ export class DataGridHeader extends FASTElement {
     columnsData: DataGridColumn[] | null;
     // @internal (undocumented)
     connectedCallback(): void;
+    // @internal (undocumented)
+    disconnectedCallback(): void;
+    // (undocumented)
+    focusColumnIndex: number;
     gridTemplateColumns: string;
+    // (undocumented)
+    handleCellFocus(e: Event): void;
+    // (undocumented)
+    handleFocusout(e: FocusEvent): void;
+    // (undocumented)
+    handleKeydown(e: KeyboardEvent): void;
+    isActiveRow: boolean;
     // @internal (undocumented)
     slottedCellElements: HTMLElement[];
     }
