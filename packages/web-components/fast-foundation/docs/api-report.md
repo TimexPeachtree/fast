@@ -299,11 +299,13 @@ export const DataGridCellTemplate: import("@microsoft/fast-element").ViewTemplat
 
 // @public
 export interface DataGridColumn {
+    cellFocusTargetCallback?: (cell: DataGridCell) => HTMLElement;
+    cellInternalFocusQueue?: boolean;
     cellTemplate?: ViewTemplate;
     columnDataKey: string;
     columnWidth?: string;
-    focusTargetCallback?: (cell: DataGridCell) => HTMLElement;
-    hasInternalFocusQueue?: boolean;
+    headerCellFocusTargetCallback?: (cell: DataGridHeaderCell) => HTMLElement;
+    headerCellInternalFocusQueue?: boolean;
     headerCellTemplate?: ViewTemplate;
     title?: string;
 }
@@ -341,7 +343,14 @@ export class DataGridHeaderCell extends FASTElement {
     // @internal (undocumented)
     disconnectedCallback(): void;
     gridColumnIndex: number;
-}
+    // (undocumented)
+    handleFocusin(e: FocusEvent): void;
+    // (undocumented)
+    handleFocusout(e: FocusEvent): void;
+    // (undocumented)
+    handleKeydown(e: KeyboardEvent): void;
+    isActiveCell: boolean;
+    }
 
 // @public
 export const DataGridHeaderCellTemplate: import("@microsoft/fast-element").ViewTemplate<DataGridHeaderCell, any>;
