@@ -270,10 +270,6 @@ export class DataGrid extends FASTElement {
     handleRowFocus(e: Event): void;
     rowItemTemplate: ViewTemplate;
     rowsData: object[];
-    // @internal (undocumented)
-    slottedHeaderElements: HTMLElement[];
-    // @internal (undocumented)
-    slottedRowElements: HTMLElement[];
     }
 
 // @public
@@ -331,6 +327,7 @@ export class DataGridHeader extends FASTElement {
     // (undocumented)
     handleKeydown(e: KeyboardEvent): void;
     isActiveRow: boolean;
+    rowIndex: number;
     // @internal (undocumented)
     slottedCellElements: HTMLElement[];
     }
@@ -380,6 +377,7 @@ export class DataGridRow extends FASTElement {
     handleKeydown(e: KeyboardEvent): void;
     isActiveRow: boolean;
     rowData: object | null;
+    rowIndex: number;
     // @internal (undocumented)
     slottedCellElements: HTMLElement[];
     }
