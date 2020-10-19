@@ -260,7 +260,6 @@ export class DataGrid extends FASTElement {
     // (undocumented)
     generateHeader: boolean;
     static generateTemplateColumns(columnsData: DataGridColumn[]): string;
-    // @internal
     gridTemplateColumns: string;
     // (undocumented)
     handleFocus(e: FocusEvent): void;
@@ -279,7 +278,6 @@ export class DataGridCell extends FASTElement {
     connectedCallback(): void;
     // @internal (undocumented)
     disconnectedCallback(): void;
-    gridColumnIndex: number;
     // (undocumented)
     handleFocusin(e: FocusEvent): void;
     // (undocumented)
@@ -299,7 +297,7 @@ export interface DataGridColumn {
     cellInternalFocusQueue?: boolean;
     cellTemplate?: ViewTemplate;
     columnDataKey: string;
-    columnWidth?: string;
+    gridColumn?: string;
     headerCellFocusTargetCallback?: (cell: DataGridHeaderCell) => HTMLElement;
     headerCellInternalFocusQueue?: boolean;
     headerCellTemplate?: ViewTemplate;
@@ -339,7 +337,6 @@ export class DataGridHeaderCell extends FASTElement {
     connectedCallback(): void;
     // @internal (undocumented)
     disconnectedCallback(): void;
-    gridColumnIndex: number;
     // (undocumented)
     handleFocusin(e: FocusEvent): void;
     // (undocumented)
