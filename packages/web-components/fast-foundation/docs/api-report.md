@@ -181,6 +181,14 @@ export class Card extends FASTElement {
 // @public
 export const CardTemplate: import("@microsoft/fast-element").ViewTemplate<Card, any>;
 
+// @public
+export enum cellType {
+    // (undocumented)
+    columnHeader = "column-header",
+    // (undocumented)
+    default = "default"
+}
+
 // Warning: (ae-incompatible-release-tags) The symbol "Checkbox" is marked as @public, but its signature references "FormAssociated" which is marked as @alpha
 //
 // @public
@@ -272,6 +280,7 @@ export class DataGrid extends FASTElement {
 
 // @public
 export class DataGridCell extends FASTElement {
+    cellType: cellType;
     columnData: DataGridColumn | null;
     // @internal (undocumented)
     connectedCallback(): void;
@@ -297,30 +306,11 @@ export interface DataGridColumn {
     cellTemplate?: ViewTemplate;
     columnDataKey: string;
     gridColumn?: string;
-    headerCellFocusTargetCallback?: (cell: DataGridHeaderCell) => HTMLElement;
+    headerCellFocusTargetCallback?: (cell: DataGridCell) => HTMLElement;
     headerCellInternalFocusQueue?: boolean;
     headerCellTemplate?: ViewTemplate;
     title?: string;
 }
-
-// @public
-export class DataGridHeaderCell extends FASTElement {
-    columnData: DataGridColumn | null;
-    // @internal (undocumented)
-    connectedCallback(): void;
-    // @internal (undocumented)
-    disconnectedCallback(): void;
-    // (undocumented)
-    handleFocusin(e: FocusEvent): void;
-    // (undocumented)
-    handleFocusout(e: FocusEvent): void;
-    // (undocumented)
-    handleKeydown(e: KeyboardEvent): void;
-    isActiveCell: boolean;
-    }
-
-// @public
-export const DataGridHeaderCellTemplate: import("@microsoft/fast-element").ViewTemplate<DataGridHeaderCell, any>;
 
 // @public
 export class DataGridRow extends FASTElement {
