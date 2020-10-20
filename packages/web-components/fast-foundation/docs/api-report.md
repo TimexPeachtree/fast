@@ -304,32 +304,6 @@ export interface DataGridColumn {
 }
 
 // @public
-export class DataGridHeader extends FASTElement {
-    // (undocumented)
-    cellElements?: object[];
-    // (undocumented)
-    cellItemTemplate?: ViewTemplate;
-    columnsData: DataGridColumn[] | null;
-    // @internal (undocumented)
-    connectedCallback(): void;
-    // @internal (undocumented)
-    disconnectedCallback(): void;
-    // (undocumented)
-    focusColumnIndex: number;
-    gridTemplateColumns: string;
-    // (undocumented)
-    handleCellFocus(e: Event): void;
-    // (undocumented)
-    handleFocusout(e: FocusEvent): void;
-    // (undocumented)
-    handleKeydown(e: KeyboardEvent): void;
-    isActiveRow: boolean;
-    rowIndex: number;
-    // @internal (undocumented)
-    slottedCellElements: HTMLElement[];
-    }
-
-// @public
 export class DataGridHeaderCell extends FASTElement {
     columnData: DataGridColumn | null;
     // @internal (undocumented)
@@ -347,9 +321,6 @@ export class DataGridHeaderCell extends FASTElement {
 
 // @public
 export const DataGridHeaderCellTemplate: import("@microsoft/fast-element").ViewTemplate<DataGridHeaderCell, any>;
-
-// @public
-export const DataGridHeaderTemplate: import("@microsoft/fast-element").ViewTemplate<DataGridHeader, any>;
 
 // @public
 export class DataGridRow extends FASTElement {
