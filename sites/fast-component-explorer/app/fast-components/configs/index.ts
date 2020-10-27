@@ -22,6 +22,9 @@ export { fastCheckboxConfig };
 import fastDialogConfig from "./fast-dialog";
 export { fastDialogConfig };
 
+import fastDataGridConfig from "./fast-data-grid";
+export { fastDataGridConfig };
+
 import fastDividerConfig from "./fast-divider";
 export { fastDividerConfig };
 
